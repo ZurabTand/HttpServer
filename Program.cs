@@ -12,7 +12,7 @@ namespace HttpServer
         {
             int port;
             int byteCount;
-            int totalBytesEchoed = 0;
+            int totalBytesReceived = 0;
             byte[] receiveBuffer;
             TcpListener listener = null;
             TcpClient client = null;
@@ -54,11 +54,11 @@ namespace HttpServer
                     {
                         networkStream.Write(receiveBuffer, 0, byteCount);
 
-                        totalBytesEchoed += byteCount;
+                        totalBytesReceived += byteCount;
                     }
 
-                    Console.WriteLine($"Received {totalBytesEchoed} bytes");
-                    Console.WriteLine($"{Encoding.ASCII.GetString(receiveBuffer, 0, totalBytesEchoed)}\n");
+                    Console.WriteLine($"Received {totalBytesReceived} bytes");
+                    Console.WriteLine($"{Encoding.ASCII.GetString(receiveBuffer, 0, totalBytesReceived)}\n");
                 }
                 catch(Exception ex)
                 {
